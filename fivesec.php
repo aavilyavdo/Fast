@@ -1,9 +1,4 @@
-Создание полной системы для управления статьями с функционалом валидации, редактирования и удаления требует более глубокой интеграции между моделями, контроллерами и представлениями. Давайте рассмотрим, как можно построить такую систему в Laravel, пошагово описывая архитектуру и основные компоненты.
-
-1. Модель Article
-Сначала создадим модель, которая будет отвечать за хранение данных статей в базе данных.
-
-// app/Models/Article.php
+<?// app/Models/Article.php
 
 namespace App\Models;
 
@@ -20,10 +15,10 @@ class Article extends Model
     {
         return $this->belongsTo(User::class);
     }
-}
-2. Контроллер ArticleController
-Теперь создадим контроллер, который будет обрабатывать запросы на создание, редактирование, обновление и удаление статей.
-
+}?>
+//2. Контроллер ArticleController
+//Теперь создадим контроллер, который будет обрабатывать запросы на создание, редактирование, обновление и удаление статей.
+<?
 // app/Http/Controllers/ArticleController.php
 
 namespace App\Http\Controllers;
@@ -86,18 +81,18 @@ class ArticleController extends Controller
 
         return redirect()->route('articles.index')->with('success', 'Статья успешно удалена!');
     }
-}
+}?>
 3. Маршруты
 Далее, нужно настроить маршруты для доступа к этим действиям. В файле routes/web.php добавим маршруты, соответствующие действиям контроллера.
-
+<?
 use App\Http\Controllers\ArticleController;
 
-Route::resource('articles', ArticleController::class)->middleware('auth');
+Route::resource('articles', ArticleController::class)->middleware('auth');?
 Эта строка автоматически создаст все необходимые маршруты для работы с ресурсом статей.
 
 4. Представления
 Теперь создадим представления для отображения статей и форм для создания/редактирования.
-
+<?
 articles/index.blade.php
 @extends('layouts.app')
 
@@ -162,13 +157,13 @@ articles/edit.blade.php
         </div>
         <button type="submit">Обновить</button>
     </form>
-@endsection
+@endsection?>
 5. Запуск миграций
 Не забудьте создать миграцию для таблицы articles. В терминале выполните следующую команду:
 
 php artisan make:migration create_articles_table
 Затем в созданном файле миграции определите структуру таблицы:
-
+<?
 // database/migrations/xxxx_xx_xx_xxxxxx_create_articles_table.php
 
 public function up()
@@ -180,7 +175,7 @@ public function up()
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         $table->timestamps();
     });
-}
+}?>
 После этого выполните миграции:
 
 php artisan migrate
