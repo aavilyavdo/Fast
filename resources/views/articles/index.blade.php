@@ -57,6 +57,11 @@ articles/edit.blade.php
             <label for="title">Название:</label>
             <input type="text" name="title" value="{{ $article->title }}" required>
         </div>
+
+        <div>
+            <label for="dste">Название:</label>
+            <input type="text" name="date" value="{{ $article->date }}" required>
+        </div>
         <div>
             <label for="content">Содержимое:</label>
             <textarea name="content" required>{{ $article->content }}</textarea>
